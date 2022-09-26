@@ -109,34 +109,58 @@ router.get('/files/:filename', (req, res) => {
     });
 });
 
-// @route GET /image/:filename
-// @desc Display Image
-router.get('/image/:filename', async (req, res) => {
-    await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        // Check if file
-        if (!file || file.length === 0) {
-            return res.status(404).json({
-                err: 'No file exists'
-            });
-        }
-        // Check if image
-        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+// // @route GET /image/:filename
+// // @desc Display Image
+// router.get('/image/:filename', async (req, res) => {
+//     await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+//         // Check if file
+//         if (!file || file.length === 0) {
+//             return res.status(404).json({
+//                 err: 'No file exists'
+//             });
+//         }
+//         // Check if image
+//         if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
 
-            // Read output to browser
-            // Till version 5+ we were using this 
-            // const readStream = gfs.createReadStream(file.filename);
-            // readStream.pipe(response);
-            // For version 6+, Replace these two lines with the lines below
-            const readStream = gridfsBucket.openDownloadStream(file._id);
-            readStream.pipe(res);
+//             // Read output to browser
+//             // Till version 5+ we were using this 
+//             // const readStream = gfs.createReadStream(file.filename);
+//             // readStream.pipe(response);
+//             // For version 6+, Replace these two lines with the lines below
+//             const readStream = gridfsBucket.openDownloadStream(file._id);
+//             readStream.pipe(res);
 
-        } else {
-            res.status(404).json({
-                err: 'Not an image'
-            });
-        }
-    });
-});
+//         } else {
+//             res.status(404).json({
+//                 err: 'Not an image'
+//             });
+//         }
+//     });
+// });
+
+// // @route GET /pdf/:filename
+// // @desc Display PDF
+// router.get('/pdf/:filename', async (req, res) => {
+//     await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+//         // Check if file
+//         if (!file || file.length === 0) {
+//             return res.status(404).json({
+//                 err: 'No file exists'
+//             });
+//         }
+//         // Check if PDF
+//         if (file.contentType === 'application/pdf') {
+//             const readStream = gridfsBucket.openDownloadStream(file._id);
+//             readStream.pipe(res);
+
+//         } else {
+//             res.status(404).json({
+//                 err: 'Not a PDF'
+//             });
+//         }
+
+//     });
+// });
 
 // @route DELETE /files/:id
 // @desc  Delete file
@@ -163,11 +187,12 @@ router.delete('/files/:filename', async (req, res) => {
     });
 });
 
-
+// @route GET /display/:filename
+// @desc Display all files
 
 // @route GET /pdf/:filename
 // @desc Display PDF
-router.get('/pdf/:filename', async (req, res) => {
+router.get('/display/:filename', async (req, res) => {
     await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         // Check if file
         if (!file || file.length === 0) {
@@ -176,17 +201,21 @@ router.get('/pdf/:filename', async (req, res) => {
             });
         }
         // Check if PDF
-        if (file.contentType === 'application/pdf') {
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'application/pdf') {
             const readStream = gridfsBucket.openDownloadStream(file._id);
             readStream.pipe(res);
 
         } else {
             res.status(404).json({
-                err: 'Not a PDF'
+                err: 'Not a Image or PDF'
             });
         }
 
     });
 });
+
+
+
+
 
 module.exports = router;

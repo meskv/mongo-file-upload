@@ -34,16 +34,17 @@
                         <% files.forEach((file)=> { %>
                             <div class="card card-body mb-3">
                             <% if (file.isImage) { %>
-                                <img src="/image/<%= file.filename %>" alt="">
+                                <img src="/display/<%= file.filename %>" alt="">
                             <% } else { %>
                             <%= file.filename %>
-                                    <iframe src="/files/<%= file.filename %>" frameborder="0"></iframe class="pdf-frame">
+                                    <iframe src="/display/<%= file.filename %>" frameborder="0"></iframe class="pdf-frame">
                             <% } %>
 
                             <form method="POST" action="/files/<%= file.filename %>?_method=DELETE">
                                 <p>filenmae: <%= file.filename %> with id:  <%= file._id %> </p>
                                 <button class="btn btn-danger btn-block mt-3">Delete</button>
-                                <a href="/files/<%= file.filename %>" class="btn btn-danger btn-block mt-3" download="<%= file.filename %> ">Download</a>
+                                <a href="/display/<%= file.filename %>" class="btn btn-success btn-block mt-3" download="<%= file.filename %> ">Download <%= file.filename %> </a>
+                                <a href="/display/<%= file.filename %> "class="btn btn-success btn-block mt-3">File</a>
                             </form>
                             </div>
 
