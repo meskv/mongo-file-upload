@@ -40,9 +40,10 @@
                                     <iframe src="/files/<%= file.filename %>" frameborder="0"></iframe class="pdf-frame">
                             <% } %>
 
-                            <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                            <form method="POST" action="/files/<%= file.filename %>?_method=DELETE">
                                 <p>filenmae: <%= file.filename %> with id:  <%= file._id %> </p>
                                 <button class="btn btn-danger btn-block mt-3">Delete</button>
+                                <a href="/files/<%= file.filename %>" class="btn btn-danger btn-block mt-3" download="<%= file.filename %> ">Download</a>
                             </form>
                             </div>
 
