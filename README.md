@@ -5,10 +5,10 @@ This is a simple project to upload files to MongoDB using GridFS.
 ## Screenshots
 
 ### Upload Files
-![Home Page](https://github.com/meskv/mongo-file-upload/blob/master/screenshots/1.png?raw=true)
+![Upload Files](https://github.com/meskv/mongo-file-upload/blob/master/screenshots/1.png?raw=true)
 
 ### Uploaded Files
-![Home Page](https://github.com/meskv/mongo-file-upload/blob/master/screenshots/2.png?raw=true)
+![Uploaded Files](https://github.com/meskv/mongo-file-upload/blob/master/screenshots/2.png?raw=true)
 
 ## Installation
 
