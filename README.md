@@ -1,5 +1,3 @@
-<!-- Write Readme for this project -->
-
 # Mongo File Upload
 
 This is a simple project to upload files to MongoDB using GridFS.
